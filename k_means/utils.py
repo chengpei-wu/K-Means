@@ -31,6 +31,5 @@ def show_animation(x, y, history_clusters_centroids):
         point_ani.set_offsets(history_clusters_centroids[i, :, :])
         return point_ani,
 
-    ani = animation.FuncAnimation(fig, update_points, np.arange(0, len(history_clusters_centroids)), interval=100)
-    plt.legend()
+    ani = animation.FuncAnimation(fig, update_points, np.arange(0, len(history_clusters_centroids)), interval=500)
     plt.show()
