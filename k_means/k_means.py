@@ -1,7 +1,6 @@
-import numpy as np
 from scipy.spatial.distance import cdist
 
-from utils import *
+from .utils import *
 
 
 class K_Means:
@@ -16,7 +15,7 @@ class K_Means:
 
     def fit(self, x):
         for iter in range(self.max_iter):
-            self.history_centroids.append(self.history_centroids)
+            self.history_centroids.append(self.centroids.tolist())
             print('\r', f'{iter + 1} / {self.max_iter}', end='', flush=True)
             clusters = dict()
             distance = cdist(x, self.centroids)
@@ -38,10 +37,4 @@ class K_Means:
         return self.centroids
 
     def get_history_centroids(self):
-        return self.history_centroids
-
-
-x, y = generate_samples(100, 4)
-k = K_Means()
-k.fit(x)
-show_samples(x, y, k.get_centroids().astype(float))
+        return np.array(self.history_centroids)
